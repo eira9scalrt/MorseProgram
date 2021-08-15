@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using System.Threading;
 
 class Program{
-	private static string msg = "";
+	private static string msg = ""; 
 	private static string old = "";
 
 	public static void Main(){	
@@ -21,6 +21,7 @@ class Program{
 					basis.Show(c.ToString());  // 'A'.ToString => "A"
 				}
 			}
+
 		}
 	}
 	private static void ReadLine(){
@@ -69,9 +70,12 @@ class Basis{
 		m_data.Add("Z","ーー・・");		
 	}
 
-	public void Show(string key){
-		if(m_data.ContainsKey(key)){
-			Console.WriteLine(m_data[key]);
+	public void Show(string kv){ 
+		if(m_data.ContainsKey(kv)){
+			Console.WriteLine(m_data[kv]);
+		}
+		else if(m_data.ContainsValue(kv){
+			Console.WriteLine(m_data[kv]);
 		}
 		else{
 			Console.WriteLine("エラー：存在しないKeyです");
