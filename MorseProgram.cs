@@ -1,24 +1,40 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Threading;
 
 class Program{
-	public static void Main(){
+	private static string msg = "";
+	private static string old = "";
+
+	public static void Main(){	
+		var task1 = Task.Run( () => Thread1("task1") );
+		var task2 = Task.Run( () => ReadLine() );		
+		task2.Wait();	
+	}
+
+	private static void Thread1(string str){
 		Basis basis = new Basis();
-
 		while(true){
-			var str = Console.ReadLine();
-
-			if( string.Compare(str ,"exit") == 0 ){
+			if(old != msg){	
+				foreach(char c in msg){        // "ABC" => 'A' 'B' 'C' 
+					basis.Show(c.ToString());  // 'A'.ToString => "A"
+				}
+			}
+		}
+	}
+	private static void ReadLine(){
+		while(true){
+			old = msg;
+			msg = Console.ReadLine();
+			if(msg == "exit"){
 				break;
 			}
-			
-			foreach(char c in str){        // "ABC" => 'A' 'B' 'C' 
-				basis.Show(c.ToString());  // 'A'.ToString => "A"
-			}
-
 		}
 	}
 }
+
+
 
 class Basis{
 	private Dictionary<string,string> m_data;
